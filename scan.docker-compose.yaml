@@ -1,0 +1,8 @@
+name: gitleaks-scan
+services:
+  gitleaks:
+    volumes:
+      - ./repositories/${REPOSITORY_NAME}:/workspace
+      - ./gitleaks.csv:/gitleaks.csv
+    image: zricethezav/gitleaks:latest
+    command: 'detect --source="/workspace" --report-format="csv" --report-path="/gitleaks.csv"'

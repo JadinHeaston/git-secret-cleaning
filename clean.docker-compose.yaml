@@ -1,0 +1,11 @@
+name: bfg-repo-cleaner
+services:
+  bfg:
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./repositories/{$REPOSITORY_NAME}:/data/repository
+      - ./expressions.txt:/data/expressions.txt
+      - ./bfg-reports/:/data.bfg-report/
+    image: tagplus5/git-bfg:latest
+    command: --replace-text /data/expressions.txt /data/repository
